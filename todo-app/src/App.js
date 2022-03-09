@@ -27,9 +27,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Todo App</h1>
+    //  FIRST AREA CONTAINING Todo App TEXT
+    <div>
+      <nav className="navbar">
+        <div className="container">
+          <div className="todoContainer">Todo App</div>
+        </div>
+      </nav>
+      {/* //  FIRST AREA CONTAINING Todo App TEXT */}
 
+      {/*  SECOND AREA CONTAINING THE ENTER TASK INPUT */}
       <div className="form__group">
         <input
           className="form__input"
@@ -38,31 +45,28 @@ function App() {
           onChange={(e) => setNewItem(e.target.value)}
           placeholder="Enter Task"
         />
+        {/*  SECOND AREA CONTAINING THE ENTER TASK INPUT */}
 
-        <label for="name" class="form__label">
-          Enter Task
-        </label>
+        
+        <button className="addButton" onClick={() => addItem()}>
+          Add
+        </button>
+        <ul>
+          {items.map((item) => {
+            return (
+              <li key={item.id}>
+                {item.value}
+                <button
+                  className="deleteButton"
+                  onClick={() => deleteItem(item.id)}
+                >
+                  ❌
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-
-      <button className="addButton" onClick={() => addItem()}>
-        Add
-      </button>
-
-      <ul>
-        {items.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.value}
-              <button
-                className="deleteButton"
-                onClick={() => deleteItem(item.id)}
-              >
-                ❌
-              </button>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }
